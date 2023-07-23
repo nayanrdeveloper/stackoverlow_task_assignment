@@ -7,7 +7,7 @@ export default function BookmarkScreen() {
   const questions = useSelector((state) => state.questionsBookmark);
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {questions &&
           questions.map((question) => {
             return (

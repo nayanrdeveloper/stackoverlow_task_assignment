@@ -49,7 +49,7 @@ const QuestionsScreen = ({ route }) => {
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {allQuestions.map((question) => (
           <View key={question.question_id}>
             <QuestionCard question={question} />
