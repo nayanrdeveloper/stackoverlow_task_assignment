@@ -1,11 +1,19 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
-import HomeScreen from "../screens/HomeScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import UserScreen from "../screens/UserScreen";
+import BookmarkScreen from "../screens/BookmarkScreen";
+import QuestionsScreen from "../screens/QuestionsScreen";
 
 const Tab = createBottomTabNavigator();
+
+const commonTagParams = {
+  React: "react",
+  ReactNative: "react-native",
+  Node: "node.js",
+};
+
+const tabBarIconSize = 25;
+const tabBarIconColor = "#2F6F44";
 
 export default function BottomTabs() {
   return (
@@ -14,37 +22,48 @@ export default function BottomTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "React") {
-            iconName = focused ? "logo-react" : "logo-react";
-          } else if (route.name === "ReactNative") {
-            iconName = focused ? "logo-android" : "logo-android";
-          } else if (route.name === "Node") {
-            iconName = focused ? "logo-nodejs" : "logo-nodejs";
+          switch (route.name) {
+            case "React":
+              iconName = focused ? "logo-react" : "logo-react";
+              break;
+            case "ReactNative":
+              iconName = focused ? "logo-android" : "logo-android";
+              break;
+            case "Node":
+              iconName = focused ? "logo-nodejs" : "logo-nodejs";
+              break;
+            case "Bookmark":
+              iconName = focused ? "bookmark-outline" : "bookmark-outline";
+              break;
+            default:
+              iconName = focused ? "help-circle" : "help-circle";
           }
 
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}
-      tabBarOptions={{
-        activeTintColor: "blue",
-        inactiveTintColor: "gray",
-      }}
+      // Todo: remove this are deprecated
+      // tabBarOptions={{
+      //   activeTintColor: tabBarIconColor,
+      //   inactiveTintColor: "gray",
+      // }}
     >
       <Tab.Screen
         name="React"
-        component={HomeScreen}
-        initialParams={{ tag: "react" }}
+        component={QuestionsScreen}
+        initialParams={{ tag: commonTagParams.React }}
       />
       <Tab.Screen
         name="ReactNative"
-        component={SettingsScreen}
-        initialParams={{ tag: "react native" }}
+        component={QuestionsScreen}
+        initialParams={{ tag: commonTagParams.ReactNative }}
       />
       <Tab.Screen
         name="Node"
-        component={UserScreen}
-        initialParams={{ tag: "node.js" }}
+        component={QuestionsScreen}
+        initialParams={{ tag: commonTagParams.Node }}
       />
+      <Tab.Screen name="Bookmark" component={BookmarkScreen} />
     </Tab.Navigator>
   );
 }

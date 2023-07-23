@@ -5,10 +5,9 @@ export const questionsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.stackexchange.com/" }),
   endpoints: (builder) => ({
     getQuestionsByTag: builder.query({
-      query: () =>
-        "2.3/questions?order=desc&sort=activity&tagged=react&site=stackoverflow",
+      query: ({tag, currentPage}) =>
+        `2.3/questions?page=${currentPage}&order=desc&pagesize=6&sort=activity&tagged=${tag}&site=stackoverflow`,
     }),
-    // Define more endpoints here if needed
   }),
 });
 
