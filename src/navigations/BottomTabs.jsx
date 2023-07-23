@@ -30,9 +30,21 @@ export default function BottomTabs() {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="React" component={HomeScreen} />
-      <Tab.Screen name="ReactNative" component={SettingsScreen} />
-      <Tab.Screen name="Node" component={UserScreen} />
+      <Tab.Screen
+        name="React"
+        component={HomeScreen}
+        initialParams={{ tag: "react" }}
+      />
+      <Tab.Screen
+        name="ReactNative"
+        component={SettingsScreen}
+        initialParams={{ tag: "react native" }}
+      />
+      <Tab.Screen
+        name="Node"
+        component={UserScreen}
+        initialParams={{ tag: "node.js" }}
+      />
     </Tab.Navigator>
   );
 }
